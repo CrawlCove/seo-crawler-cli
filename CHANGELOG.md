@@ -8,8 +8,8 @@
 
 ## 1.1.1 — 2026-09-29
 
-- The built `dist/` is now committed, so `npm install -g github:CrawlCove/crawlcove-cli`
-  and `npx github:CrawlCove/crawlcove-cli` work on every npm version. (npm 10's
+- The built `dist/` is now committed, so `npm install -g github:CrawlCove/seo-crawler-cli`
+  and `npx github:CrawlCove/seo-crawler-cli` work on every npm version. (npm 10's
   global git install skips dev dependencies before running `prepare`, so the
   previous build-on-install approach failed with `tsc: not found` on Node 20.)
   CI now fails if `dist/` is stale.
@@ -39,7 +39,7 @@ Initial release.
 - `--fail-on <checks>` and `--threshold <n>` for a configurable non-zero exit
   code — built for CI (see the upcoming `crawlcove-action`, which wraps this
   CLI).
-- Output field names match [crawlcove-export-spec](https://github.com/CrawlCove/crawlcove-export-spec)
+- Output field names match [crawlcove-export-spec](https://github.com/CrawlCove/seo-crawl-export-spec)
   where the CLI checks the same thing, so a consumer of the desktop app's
   export needs no translation layer to also consume this CLI's output.
 

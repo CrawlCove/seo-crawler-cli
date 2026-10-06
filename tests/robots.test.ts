@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from 'vitest'
 import { loadRobots } from '../src/robots.js'
 import { FixtureServer } from './fixtureServer.js'
 
-const OPTS = { userAgent: 'crawlcove-cli/1.0 (+https://github.com/CrawlCove/crawlcove-cli)', timeoutMs: 2000 }
+const OPTS = { userAgent: 'crawlcove-cli/1.0 (+https://github.com/CrawlCove/seo-crawler-cli)', timeoutMs: 2000 }
 
 describe('loadRobots', () => {
   let server: FixtureServer

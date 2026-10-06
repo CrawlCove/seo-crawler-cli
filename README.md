@@ -8,16 +8,16 @@ Straight from GitHub (Node 18+):
 
 ```sh
 # one-off, nothing installed:
-npx github:CrawlCove/crawlcove-cli crawl https://example.com
+npx github:CrawlCove/seo-crawler-cli crawl https://example.com
 
 # global command, from a release tarball:
-npm install -g https://github.com/CrawlCove/crawlcove-cli/archive/refs/tags/v1.1.3.tar.gz
+npm install -g https://github.com/CrawlCove/seo-crawler-cli/archive/refs/tags/v1.1.3.tar.gz
 crawlcove --version
 ```
 
-The tarball form is deliberate: `npm install -g github:CrawlCove/crawlcove-cli`
+The tarball form is deliberate: `npm install -g github:CrawlCove/seo-crawler-cli`
 looks like it works on npm 10 but leaves a dangling symlink into npm's cache
-(a non-global `npm install github:CrawlCove/crawlcove-cli` is fine). The npm
+(a non-global `npm install github:CrawlCove/seo-crawler-cli` is fine). The npm
 package `crawlcove` is coming — once it is published, `npm install -g crawlcove`
 and `npx crawlcove crawl https://example.com` will work too.
 
@@ -63,7 +63,7 @@ so a site owner who finds the string in an access log can read what it does.
 ## Output
 
 JSON output is one object per crawled page (see
-[crawlcove-export-spec](https://github.com/CrawlCove/crawlcove-export-spec) for
+[crawlcove-export-spec](https://github.com/CrawlCove/seo-crawl-export-spec) for
 the full field reference — this CLI's field names match it where it checks the
 same thing). CSV output is the same data as RFC 4180 CSV.
 
@@ -76,22 +76,22 @@ same thing). CSV output is the same data as RFC 4180 CSV.
 
 ## Works with CrawlCove
 
-This CLI shares its checks and output shape with [Crawl Cove](https://crawlcove.com/?utm_source=github&utm_medium=crawlcove-cli), a desktop SEO crawler for Windows and Mac. Use this CLI for scripted, scheduled, or CI crawls; open the same site in the desktop app for the full visual report, historical tracking, and Search Console integration.
+This CLI shares its checks and output shape with [Crawl Cove](https://crawlcove.com/?utm_source=github&utm_medium=seo-crawler-cli), a desktop SEO crawler for Windows and Mac. Use this CLI for scripted, scheduled, or CI crawls; open the same site in the desktop app for the full visual report, historical tracking, and Search Console integration.
 
-This repo has its own page on crawlcove.com: [Crawl Cove CLI](https://crawlcove.com/open-source/crawlcove-cli?utm_source=github&utm_medium=crawlcove-cli), with the guide to running an SEO audit from the terminal at [https://crawlcove.com/blog/seo-audit-from-the-terminal](https://crawlcove.com/blog/seo-audit-from-the-terminal?utm_source=github&utm_medium=crawlcove-cli).
+This repo has its own page on crawlcove.com: [Crawl Cove CLI](https://crawlcove.com/open-source/crawlcove-cli?utm_source=github&utm_medium=seo-crawler-cli), with the guide to running an SEO audit from the terminal at [https://crawlcove.com/blog/seo-audit-from-the-terminal](https://crawlcove.com/blog/seo-audit-from-the-terminal?utm_source=github&utm_medium=seo-crawler-cli).
 
 ## Related tools
 
-- [crawlcove-js](https://github.com/CrawlCove/crawlcove-js) — `crawlcove-export`, a typed JavaScript/TypeScript library to load, query and convert Crawl Cove exports.
-- [crawlcove-sheets](https://github.com/CrawlCove/crawlcove-sheets) — Google Sheets add-on that turns a Crawl Cove export into an audit workbook (issues by type, pages by status, title/meta flags).
-- [crawlcove-sf-import](https://github.com/CrawlCove/crawlcove-sf-import) — convert a Screaming Frog export into the Crawl Cove export format, with a report of what carried over.
-- [crawlcove-schema-validator](https://github.com/CrawlCove/crawlcove-schema-validator) — validate a page's JSON-LD against Google's required and recommended rich-result properties.
-- [crawlcove-hreflang-checker](https://github.com/CrawlCove/crawlcove-hreflang-checker) — check a page's or a sitemap's hreflang tags: codes, self-reference, x-default and return tags.
-- [crawlcove-mcp](https://github.com/CrawlCove/crawlcove-mcp) — MCP server that gives Claude, Cursor and other AI assistants the crawl data: crawl a site, list issues, find broken links.
-- [crawlcove-export-spec](https://github.com/CrawlCove/crawlcove-export-spec) — the JSON Schema and CSV column reference this CLI's output follows.
-- [crawlcove-redirect-chain-checker](https://github.com/CrawlCove/crawlcove-redirect-chain-checker) — follow every hop of a URL’s redirects; flags chains, loops, HTTPS downgrades and meta refreshes.
-- [crawlcove-sitemap-validator](https://github.com/CrawlCove/crawlcove-sitemap-validator) — validate an XML sitemap or sitemap index against the protocol and search-engine limits.
-- [crawlcove-robots-txt-tester](https://github.com/CrawlCove/crawlcove-robots-txt-tester) — lint a robots.txt and test which URLs each crawler may fetch, with the deciding line.
+- [crawlcove-js](https://github.com/CrawlCove/seo-crawl-export-js) — `crawlcove-export`, a typed JavaScript/TypeScript library to load, query and convert Crawl Cove exports.
+- [crawlcove-sheets](https://github.com/CrawlCove/seo-audit-google-sheets) — Google Sheets add-on that turns a Crawl Cove export into an audit workbook (issues by type, pages by status, title/meta flags).
+- [crawlcove-sf-import](https://github.com/CrawlCove/screaming-frog-export-converter) — convert a Screaming Frog export into the Crawl Cove export format, with a report of what carried over.
+- [crawlcove-schema-validator](https://github.com/CrawlCove/schema-markup-validator) — validate a page's JSON-LD against Google's required and recommended rich-result properties.
+- [crawlcove-hreflang-checker](https://github.com/CrawlCove/hreflang-checker) — check a page's or a sitemap's hreflang tags: codes, self-reference, x-default and return tags.
+- [crawlcove-mcp](https://github.com/CrawlCove/seo-mcp-server) — MCP server that gives Claude, Cursor and other AI assistants the crawl data: crawl a site, list issues, find broken links.
+- [crawlcove-export-spec](https://github.com/CrawlCove/seo-crawl-export-spec) — the JSON Schema and CSV column reference this CLI's output follows.
+- [crawlcove-redirect-chain-checker](https://github.com/CrawlCove/redirect-chain-checker) — follow every hop of a URL’s redirects; flags chains, loops, HTTPS downgrades and meta refreshes.
+- [crawlcove-sitemap-validator](https://github.com/CrawlCove/xml-sitemap-validator) — validate an XML sitemap or sitemap index against the protocol and search-engine limits.
+- [crawlcove-robots-txt-tester](https://github.com/CrawlCove/robots-txt-tester) — lint a robots.txt and test which URLs each crawler may fetch, with the deciding line.
 
 ## License
 
