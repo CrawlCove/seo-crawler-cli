@@ -4,6 +4,7 @@ import { Command } from 'commander';
 import { crawlSite, DEFAULT_CRAWL_OPTIONS, SeedBlockedByRobotsError } from './crawl.js';
 import { shouldFail } from './checks.js';
 import { toCsv, toJson } from './output.js';
+import { defaultDestination } from './download.js';
 import { ALL_FAIL_ON_CHECKS } from './types.js';
 const program = new Command();
 const { version } = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
@@ -16,7 +17,8 @@ program
     .description('Crawl a site from <url> and report every page (default command: `crawlcove <url>` works too)')
     .argument('<url>', 'URL to start crawling from')
     .option('-o, --output <format>', 'json or csv', 'json')
-    .option('--file <path>', 'write output to a file instead of stdout')
+    .option('--file <path>', 'write output to this path. Default: JSON to stdout; CSV to your Downloads folder when run in a terminal, ' +
+    'to stdout when piped or redirected. "-" forces stdout.')
     .option('--max-pages <n>', 'stop after crawling this many pages', '100')
     .option('--concurrency <n>', 'simultaneous requests', '4')
     .option('--timeout <ms>', 'per-request timeout in milliseconds', '15000')
@@ -53,9 +55,17 @@ program
         }
         throw err;
     }
-    const text = opts.output === 'csv' ? toCsv(result) : toJson(result);
-    if (opts.file) {
-        writeFileSync(opts.file, text, 'utf8');
+    const format = opts.output === 'csv' ? 'csv' : 'json';
+    const text = format === 'csv' ? toCsv(result) : toJson(result);
+    const dest = opts.file && opts.file !== '-'
+        ? { kind: 'file', path: String(opts.file) }
+        : opts.file === '-'
+            ? { kind: 'stdout' }
+            : defaultDestination(format, url, Boolean(process.stdout.isTTY));
+    if (dest.kind === 'file') {
+        writeFileSync(dest.path, text, 'utf8');
+        if (!opts.file)
+            console.error(`crawlcove: ${format.toUpperCase()} saved to ${dest.path}`);
     }
     else {
         process.stdout.write(text);

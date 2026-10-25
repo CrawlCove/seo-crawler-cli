@@ -11,7 +11,7 @@ Straight from GitHub (Node 18+):
 npx github:CrawlCove/seo-crawler-cli crawl https://example.com
 
 # global command, from a release tarball:
-npm install -g https://github.com/CrawlCove/seo-crawler-cli/archive/refs/tags/v1.1.3.tar.gz
+npm install -g https://github.com/CrawlCove/seo-crawler-cli/archive/refs/tags/v1.1.4.tar.gz
 crawlcove --version
 ```
 
@@ -28,7 +28,7 @@ crawlcove crawl <url> [options]     # `crawl` is the default command, so `crawlc
 
 Options:
   -o, --output <format>   json or csv (default: json)
-  --file <path>           write output to a file instead of stdout
+  --file <path>           write output to this path ("-" forces stdout)
   --max-pages <n>         stop after crawling this many pages (default: 100)
   --concurrency <n>       simultaneous requests (default: 4)
   --timeout <ms>          per-request timeout in milliseconds (default: 15000)
@@ -37,6 +37,13 @@ Options:
                           (default: all four)
   --threshold <n>         exit non-zero once the selected checks total this many issues (default: 1)
 ```
+
+Where the result goes: JSON prints to stdout. CSV typed into a terminal is
+saved to your Downloads folder as `crawlcove-<host>-<date>-<time>.csv` and the
+path is printed, so `crawlcove crawl https://example.com -o csv` leaves a file
+ready to open in a spreadsheet. CSV that is piped or redirected
+(`-o csv > out.csv`, a script, CI) still streams to stdout; `--file <path>`
+picks the location and `--file -` forces stdout.
 
 Exit codes: `0` clean, `1` the selected `--fail-on` checks reached `--threshold`,
 `2` usage error or robots.txt disallowed the start URL itself (nothing was fetched).

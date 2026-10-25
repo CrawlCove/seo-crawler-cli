@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.4 — 2026-10-25
+
+- `--output csv` in a terminal saves to your Downloads folder as
+  `crawlcove-<host>-<date>-<time>.csv` (never overwriting, falling back to the
+  current directory if there is no Downloads folder) and prints the path. Piped
+  or redirected CSV still goes to stdout, so `> out.csv` and CI are unchanged;
+  `--file -` forces stdout. JSON output is unchanged.
+
 ## 1.1.2 — 2026-09-29
 
 - `crawlcove --version`.

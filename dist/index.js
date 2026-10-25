@@ -4,3 +4,4 @@ export { loadRobots } from './robots.js';
 export { summarizeChecks, shouldFail } from './checks.js';
 export { toJson, toCsv } from './output.js';
 export { ALL_FAIL_ON_CHECKS } from './types.js';
+export { defaultDestination, defaultFileName, downloadsDir, unusedPath } from './download.js';
