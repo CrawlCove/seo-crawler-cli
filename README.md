@@ -1,3 +1,5 @@
+<a href="https://crawlcove.com/download?utm_source=github&utm_medium=readme&utm_campaign=seo-crawler-cli"><img src="https://raw.githubusercontent.com/CrawlCove/.github/main/banners/seo-crawler-cli.svg" width="1200" alt="seo-crawler-cli: Crawl a site from a script or CI. Checks status codes, redirect chains, titles, meta descriptions, H1s, canonicals, noindex and broken links, and fails the build on regressions." /></a>
+
 # crawlcove
 
 A command line SEO crawler for scripts and CI — crawl a site headlessly and check status codes, redirect chains, titles, meta descriptions, H1s, canonicals, noindex and broken internal links, with a configurable non-zero exit code for pipelines.
