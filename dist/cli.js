@@ -10,7 +10,7 @@ const program = new Command();
 const { version } = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
 program
     .name('crawlcove')
-    .description('Headless SEO crawler for scripts and CI — crawl a site, check it, exit non-zero on regressions.')
+    .description('Crawl a site from a script or CI, check every page, and exit non-zero when the checks fail.')
     .version(version);
 program
     .command('crawl', { isDefault: true })

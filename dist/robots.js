@@ -13,7 +13,7 @@ const ROBOTS_REDIRECT_LIMIT = 5;
  *
  * User-agent groups are matched on the product token before the `/`
  * (`crawlcove-cli/1.0 (...)` matches `User-agent: crawlcove-cli`), falling
- * back to the `*` group — RFC 9309 §2.2.1.
+ * back to the `*` group, as RFC 9309 §2.2.1 says.
  */
 export async function loadRobots(origin, opts) {
     const robotsUrl = `${origin}/robots.txt`;
