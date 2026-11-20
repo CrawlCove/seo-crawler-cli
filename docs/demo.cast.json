@@ -1,0 +1,77 @@
+{
+ "recorded": "2026-11-20T00:01:44.543Z",
+ "steps": [
+  {
+   "show": "npx github:CrawlCove/seo-crawler-cli https://crawlcove.github.io/seo-test-site/ --file crawl.json",
+   "exit": 0,
+   "ms": 5039,
+   "lines": [
+    {
+     "t": 5013,
+     "text": ""
+    },
+    {
+     "t": 5013,
+     "text": "crawlcove: 80 page(s) crawled. broken links: 2, missing titles: 1, noindex: 1, redirect chains: 0. 1 URL(s) skipped because robots.txt disallows them."
+    }
+   ]
+  },
+  {
+   "show": "echo $?",
+   "exit": 0,
+   "ms": 8,
+   "lines": [
+    {
+     "t": 8,
+     "text": "1"
+    }
+   ]
+  },
+  {
+   "show": "jq '.summary' crawl.json",
+   "exit": 0,
+   "ms": 7,
+   "lines": [
+    {
+     "t": 7,
+     "text": "{"
+    },
+    {
+     "t": 7,
+     "text": "  \"brokenLinks\": 2,"
+    },
+    {
+     "t": 7,
+     "text": "  \"missingTitles\": 1,"
+    },
+    {
+     "t": 7,
+     "text": "  \"noindex\": 1,"
+    },
+    {
+     "t": 7,
+     "text": "  \"redirectChains\": 0"
+    },
+    {
+     "t": 7,
+     "text": "}"
+    }
+   ]
+  },
+  {
+   "show": "jq -r '.pages[] | select(.statusCode >= 400) | \"\\(.statusCode) \\(.url)\"' crawl.json",
+   "exit": 0,
+   "ms": 8,
+   "lines": [
+    {
+     "t": 7,
+     "text": "404 https://crawlcove.github.io/seo-test-site/products/discontinued-tins.html"
+    },
+    {
+     "t": 7,
+     "text": "404 https://crawlcove.github.io/seo-test-site/blog/htps//www.gov.uk/fire-safety"
+    }
+   ]
+  }
+ ]
+}

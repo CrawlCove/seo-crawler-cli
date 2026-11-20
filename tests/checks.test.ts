@@ -33,20 +33,52 @@ function result(pages: PageResult[]): CrawlResult {
 }
 
 describe('summarizeChecks', () => {
-  it('counts a broken page itself, plus any page linking to a broken page', () => {
+  it('counts a dead link once, on the page that links to it', () => {
     const summary = summarizeChecks(
       result([
         page({ url: 'https://acme.test/', brokenInternalLinks: ['https://acme.test/gone'] }),
         page({ url: 'https://acme.test/gone', statusCode: 404 })
       ])
     )
-    // 1 (the broken page itself) + 1 (the link to it from the home page) = 2
+    expect(summary.brokenLinks).toBe(1)
+  })
+
+  it('counts two pages linking to one dead URL as two broken links', () => {
+    const summary = summarizeChecks(
+      result([
+        page({ url: 'https://acme.test/', brokenInternalLinks: ['https://acme.test/gone'] }),
+        page({ url: 'https://acme.test/a', brokenInternalLinks: ['https://acme.test/gone'] }),
+        page({ url: 'https://acme.test/gone', statusCode: 404 })
+      ])
+    )
     expect(summary.brokenLinks).toBe(2)
+  })
+
+  it('counts a failed page that nothing links to (a sitemap-only URL) once', () => {
+    const summary = summarizeChecks(
+      result([page({ url: 'https://acme.test/' }), page({ url: 'https://acme.test/sold-out', statusCode: 404 })])
+    )
+    expect(summary.brokenLinks).toBe(1)
+  })
+
+  it('does not count the noindex on a 404 template as a noindex page', () => {
+    const summary = summarizeChecks(
+      result([
+        page({ url: 'https://acme.test/', brokenInternalLinks: ['https://acme.test/gone'] }),
+        page({ url: 'https://acme.test/gone', statusCode: 404, robotsMeta: 'noindex' })
+      ])
+    )
+    expect(summary.noindex).toBe(0)
   })
 
   it('counts a page whose own request failed as broken', () => {
     const summary = summarizeChecks(result([page({ url: 'https://acme.test/', statusCode: null, fetchError: 'ETIMEDOUT' })]))
     expect(summary.brokenLinks).toBe(1)
+  })
+
+  it('does not count a 404 page without a title as a missing title', () => {
+    const summary = summarizeChecks(result([page({ url: 'https://acme.test/' }), page({ url: 'https://acme.test/gone', statusCode: 404, title: null })]))
+    expect(summary.missingTitles).toBe(0)
   })
 
   it('counts empty and missing titles as missing', () => {

@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.2.0, 2026-11-20
+
+- The summary counts each dead link once. A link from a crawled page to a URL
+  that failed counts on the linking page; the failed page itself only adds one
+  when no crawled page links to it (the seed, or a URL known only from a
+  sitemap). Before, one dead link read as "broken links: 2".
+- Missing titles and noindex count only pages that answered 2xx, so a 404
+  template's missing title or `noindex` no longer adds to either count.
+- Found by crawling [seo-test-site](https://github.com/CrawlCove/seo-test-site),
+  whose two planted dead links read as four. If you pass `--threshold` above 1,
+  the same site now reaches it with fewer issues.
+
 ## 1.1.4 — 2026-10-25
 
 - `--output csv` in a terminal saves to your Downloads folder as
