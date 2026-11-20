@@ -6,7 +6,7 @@ An **SEO crawler CLI** for scripts and CI. One command crawls a site and checks 
 
 <img src="docs/demo.svg" width="980" alt="Terminal recording: crawling the SEO test site finds 2 broken links, 1 missing title and 1 noindex page, and exits 1">
 
-*Recorded from a real run against [seo-test-site](https://github.com/CrawlCove/seo-test-site), a public site with 54 planted SEO problems that you can crawl too.*
+*Recorded from a real run against [seo-test-site](https://github.com/CrawlCove/seo-test-site), a public site full of planted SEO problems that you can crawl too.*
 
 ## Quick start
 
