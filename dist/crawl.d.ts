@@ -4,7 +4,7 @@ export interface CrawlOptions {
     concurrency: number;
     timeoutMs: number;
     userAgent: string;
-    /** Skip robots.txt entirely. Off by default — only for sites you own or are authorised to crawl. */
+    /** Skip robots.txt entirely. Off by default; use it only on sites you own or are authorised to crawl. */
     ignoreRobots: boolean;
     now: () => Date;
 }

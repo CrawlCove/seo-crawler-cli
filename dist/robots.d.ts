@@ -4,7 +4,7 @@ export interface RobotsRules {
     isAllowed: (url: string) => boolean;
     /** HTTP status of the robots.txt fetch, or null on a transport error. */
     status: number | null;
-    /** Why the rules are what they are — surfaced on stderr so a surprising result is explainable. */
+    /** Why the rules are what they are. Printed on stderr so a surprising result can be explained. */
     source: 'parsed' | 'not-found-allow-all' | 'no-rules-allow-all' | 'server-error-disallow-all' | 'fetch-error-disallow-all' | 'ignored';
 }
 /** What `--ignore-robots` produces: every URL allowed, nothing fetched. */
@@ -19,7 +19,7 @@ export declare const ROBOTS_IGNORED: RobotsRules;
  *
  * User-agent groups are matched on the product token before the `/`
  * (`crawlcove-cli/1.0 (...)` matches `User-agent: crawlcove-cli`), falling
- * back to the `*` group — RFC 9309 §2.2.1.
+ * back to the `*` group, as RFC 9309 §2.2.1 says.
  */
 export declare function loadRobots(origin: string, opts: {
     userAgent: string;

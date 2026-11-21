@@ -1,6 +1,6 @@
 /**
  * The user's Downloads folder (~/Downloads on Windows, macOS and Linux), or the
- * current directory when there is no such folder — the file is always written
+ * current directory when there is no such folder, so the file is always written
  * somewhere predictable.
  */
 export declare function downloadsDir(home?: string, cwd?: string): string;

@@ -2,7 +2,7 @@ import type { CheckSummary, FailOnCheck, PageResult } from './types.js'
 
 export type { CheckSummary } from './types.js'
 
-/** A redirect chain is 2+ hops — a single redirect (old URL -> canonical new URL) is normal and not flagged. */
+/** A redirect chain is 2+ hops. A single redirect (old URL -> canonical new URL) is normal and not flagged. */
 const REDIRECT_CHAIN_MIN_HOPS = 2
 
 /**

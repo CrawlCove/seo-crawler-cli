@@ -14,12 +14,12 @@ export interface PageResult {
     h1Count: number | null;
     canonical: string | null;
     robotsMeta: string | null;
-    /** Derived: HTTP 200 and not noindex (robots meta only — the CLI does not read response headers for X-Robots-Tag yet). */
+    /** Derived: HTTP 200 and not noindex. Only the robots meta tag is read; the CLI does not read the X-Robots-Tag response header yet. */
     indexable: boolean;
     /** Same-origin links found on the page that this crawl also visited and got a 4xx/5xx or fetch error for. */
     brokenInternalLinks: string[];
 }
-/** Per-category issue counts for one crawl — the same numbers the CLI's exit code is decided on. */
+/** Per-category issue counts for one crawl. The CLI decides its exit code on these numbers. */
 export interface CheckSummary {
     brokenLinks: number;
     missingTitles: number;
