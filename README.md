@@ -11,7 +11,7 @@ An **SEO crawler CLI** for scripts and CI. One command crawls a site and checks 
 ## Quick start
 
 ```sh
-npx github:CrawlCove/seo-crawler-cli https://crawlcove.github.io/seo-test-site/ --file crawl.json
+npx crawlcove https://crawlcove.github.io/seo-test-site/ --file crawl.json
 ```
 
 ```
@@ -22,22 +22,18 @@ The exit code is `1` because the crawl found problems, so the same line fails a 
 
 ## Install
 
-Straight from GitHub (Node 18+):
+From npm (Node 18+):
 
 ```sh
 # one-off, nothing installed:
-npx github:CrawlCove/seo-crawler-cli https://example.com
+npx crawlcove https://example.com
 
-# global command, from a release tarball:
-npm install -g https://github.com/CrawlCove/seo-crawler-cli/archive/refs/tags/v1.2.0.tar.gz
+# global command:
+npm install -g crawlcove
 crawlcove --version
 ```
 
-The tarball form is deliberate: `npm install -g github:CrawlCove/seo-crawler-cli`
-looks like it works on npm 10 but leaves a dangling symlink into npm's cache
-(a non-global `npm install github:CrawlCove/seo-crawler-cli` is fine). The npm
-package `crawlcove` is coming; once it is published, `npm install -g crawlcove`
-and `npx crawlcove crawl https://example.com` will work too.
+The package on npm is `crawlcove`, the same name as the command.
 
 ## Usage
 
